@@ -1,48 +1,57 @@
-import React from 'react';
-import './button.css';
+import React from "react";
+import styled from "@emotion/styled";
 
-interface ButtonProps {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
-   * What background color to use
-   */
+const themeColors = {
+  primary: "#43a047",
+  secondary: "#ffb30033",
+  white: "#ffffff",
+  error: "#d32f2f",
+  black: "#000000",
+};
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   backgroundColor?: string;
-  /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Button contents
-   */
-  label: string;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
+  color?: string;
+  title?: string;
+  size?: "small" | "normal";
 }
+const StyledButton = styled.button<ButtonProps>`
+  background-color: ${({backgroundColor}) =>
+    backgroundColor || themeColors.primary};
+  color: ${({color}) => color || themeColors.white};
+  height: ${({size}) => (size === "small" ? "30px" : "36px")};
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  &: hover {
+    filter: brightness(0.8);
+  }
+`;
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({
-  primary = false,
-  size = 'medium',
+const Button: React.FC<ButtonProps> = ({
+  size,
+  type,
+  title,
   backgroundColor,
-  label,
-  ...props
-}: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  color,
+  ...rest
+}) => {
   return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
-      {...props}
+    <StyledButton
+      type={type || "button"}
+      size={size || "normal"}
+      backgroundColor={backgroundColor}
+      color={color}
+      {...rest}
     >
-      {label}
-    </button>
+      {title}
+    </StyledButton>
   );
 };
+
+export default Button;
