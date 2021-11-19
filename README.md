@@ -2,9 +2,12 @@
 
 This is a sample demo between react app storybook with material ui vs with emotion js implementation.
 
-Storybook [Knobs](https://storybook.js.org/addons/storybook-addon-knobs-color-options) and [Actions](https://storybook.js.org/docs/react/essentials/actions) functionality added
+Storybook [Knobs](https://storybook.js.org/addons/storybook-addon-knobs-color-options) and [Actions](https://storybook.js.org/docs/react/essentials/actions) functionality added.
+
 
 ## Summary
+
+Just a basic implementation with button element, mui vs pure emotion styled html button.
 
 ### with MUI v4
 ```
